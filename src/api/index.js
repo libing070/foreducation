@@ -11,9 +11,7 @@ axios.defaults.timeout=50000;
 var loadinginstace;
 axios.interceptors.request.use(config=>{
   //element ui Loading方法
-
-     console.log('-------------------request init----------------');
-
+  console.log('-------------------request init----------------');
   loadinginstace=Loading.service({
     lock: true,
     text: '拼命加载中...',
