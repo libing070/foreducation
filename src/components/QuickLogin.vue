@@ -37,7 +37,7 @@
     </van-row>
     <van-row  class="item"  type="flex" justify="center">
       <van-col span="20" class="">
-        <van-button type="primary" size="large">大号按钮</van-button>
+        <van-button type="primary" size="large">确定</van-button>
       </van-col>
     </van-row>
   </div>
