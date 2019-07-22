@@ -2,7 +2,7 @@
   <div class="login">
     <van-row class="head-logo" type="flex" justify="center">
       <van-col span="4">
-        <img :src="require('./../assets/images/headportrait.png')" class="image">
+        <img :src="require('../../assets/images/headportrait.png')" class="image">
       </van-col>
     </van-row>
     <div class="field">
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-  import API from '../api/api_test';
+  import API from '../../api/api_test';
 
   export default {
     name: "login",
@@ -95,11 +95,11 @@
 
       onQuickLogin(){
           let that=this;
-          that.$router.push({path:'/quciklogin'});
+          that.$router.push({path:'/user/quciklogin'});
       },
       onResetPassword(){
         let that=this;
-        that.$router.push({path:'/resetpassword'});
+        that.$router.push({path:'/user/resetpassword'});
       }
     }
   }

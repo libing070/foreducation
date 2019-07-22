@@ -71,11 +71,11 @@
     methods: {
       onEmailLogin(){
         let that=this;
-        that.$router.push({path:'/emaillogin'});
+        that.$router.push({path:'/user/emaillogin'});
       },
       onOpenPhoneParagraphNo() {
         let that = this;
-        that.$router.push({path: '/phoneparagraphno'});
+        that.$router.push({path: '/user/phoneparagraphno'});
       },
       countDown(){
         let that = this;

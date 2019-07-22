@@ -92,7 +92,7 @@
         // 返回布尔值
         beforeRead(file) {
           if (file.type.indexOf('image')==-1) {
-            Toast('请上传 jpg 格式图片1111');
+            Toast('请上传 jpg/png 格式图片');
             return false;
           }
 

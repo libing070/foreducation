@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login'
-import QuickLogin from '@/components/QuickLogin'
-import PhoneParagraphNo from '@/components/PhoneParagraphNo'
-import EmailLogin from '@/components/EmailLogin'
-import ResetPassword from '@/components/ResetPassword'
+import Login from '@/components/user/Login'
+import QuickLogin from '@/components/user/QuickLogin'
+import PhoneParagraphNo from '@/components/user/PhoneParagraphNo'
+import EmailLogin from '@/components/user/EmailLogin'
+import ResetPassword from '@/components/user/ResetPassword'
 
 Vue.use(Router)
 
@@ -14,30 +14,34 @@ let router = new Router({
   routes: [
     {
       path: '/',
-      redirect:'/login'  //直接访问ip+端口跳转到登陆页面
+      redirect:'/user/login'  //直接访问ip+端口跳转到登陆页面
     },
     {
-      path: '/login',
+      path: '/user',
+      redirect:'/user/login'  //直接访问ip+端口跳转到登陆页面
+    },
+    {
+      path: '/user/login',
       name: 'Login',
       component: Login
     },
     {
-      path: '/quciklogin',
+      path: '/user/quciklogin',
       name: 'QuickLogin',
       component: QuickLogin
     },
     {
-      path: '/phoneparagraphno',
+      path: '/user/phoneparagraphno',
       name: 'PhoneParagraphNo',
       component: PhoneParagraphNo
     },
     {
-      path: '/emaillogin',
+      path: '/user/emaillogin',
       name: 'EmailLogin',
       component: EmailLogin
     },
     {
-      path: '/resetpassword',
+      path: '/user/resetpassword',
       name: 'ResetPassword',
       component: ResetPassword
     },
