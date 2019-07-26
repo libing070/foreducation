@@ -1,5 +1,6 @@
 <template>
   <div class="email-login">
+    <NavBarherder navbartitle="电子邮箱"></NavBarherder>
     <van-row class="head-logo" type="flex" justify="center">
       <van-col span="24" style="text-align: center">
         <van-uploader v-model="fileList"   :max-count="1" :before-read="beforeRead" />
@@ -14,6 +15,7 @@
       <van-col span="24">
         <van-cell-group>
           <van-field
+            ref="email"
             v-model="email"
             placeholder="请输入邮箱"
             label="邮箱"
@@ -39,6 +41,7 @@
       <van-col span="24">
         <van-cell-group>
           <van-field
+
             v-model="name"
             placeholder="请输入名字"
             label="名字"
@@ -90,7 +93,7 @@
     </van-row>
     <van-row  class="field-item"  type="flex" justify="center">
       <van-col span="20" class="">
-        <van-button type="primary" size="large">完成</van-button>
+        <van-button type="primary" size="large" @click.native.prevent="onSubmit">完成</van-button>
       </van-col>
     </van-row>
   </div>
@@ -98,6 +101,8 @@
 </template>
 
 <script>
+  import NavBarherder from './../common/NavBarherder'
+
   import { Toast } from 'vant';
     export default {
         name: "email-login",//邮箱注册
@@ -116,11 +121,14 @@
           showPicker: false,
         }
       },
+      components:{
+        NavBarherder:NavBarherder
+      },
       methods: {
         // 返回布尔值
         beforeRead(file) {
           if (file.type.indexOf('image')==-1) {
-            Toast('请上传 jpg 格式图片1111');
+            Toast('请上传 jpg 格式图片');
             return false;
           }
 
@@ -142,6 +150,11 @@
          var youWant=d.getFullYear() + '年' + (d.getMonth() + 1) + '月' + d.getDate()+'日';
           this.birthday = youWant;
           this.showPicker = false;
+        },
+        onSubmit(){
+          var that=this;
+          console.log(that.$refs.email.value);
+          console.log(that.$refs.email.type);
         }
       }
 

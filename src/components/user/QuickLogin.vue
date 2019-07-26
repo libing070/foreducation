@@ -1,5 +1,6 @@
 <template>
   <div class="quick-login">
+    <NavBarherder navbartitle="手机快捷登录"></NavBarherder>
     <van-row class="title" type="flex" justify="center">
       <van-col style="text-align: center" span="24">输入手机号码</van-col>
     </van-row>
@@ -44,6 +45,8 @@
 </template>
 
 <script>
+  import NavBarherder from './../common/NavBarherder'
+
   import { Toast } from 'vant';
   export default {
     name: "quick-login",//手机快捷登陆
@@ -57,6 +60,9 @@
         country: 'CN',
         phoneparagraphno: '+86'
       }
+    },
+    components:{
+      NavBarherder:NavBarherder
     },
     created() {
     },

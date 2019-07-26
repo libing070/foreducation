@@ -48,6 +48,7 @@ let router = new Router({
   ]
 })
 router.beforeEach((to, from, next) => {
+  console.log(from);
   next();
   // if (to.path.startsWith('/login')||to.path.startsWith('/register')) {//当路由是登陆 或注册页时  删除 "access-user"
   //   window.localStorage.removeItem('access-user')

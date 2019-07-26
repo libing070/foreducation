@@ -1,5 +1,6 @@
 <template>
   <div class="reset-password">
+    <NavBarherder navbartitle="找回密码"></NavBarherder>
     <van-tabs v-model="active">
       <van-tab title="手机号码">
         <van-row class="field-item">
@@ -66,6 +67,7 @@
 </template>
 
 <script>
+  import NavBarherder from './../common/NavBarherder'
   import {Toast} from 'vant';
 
   export default {
@@ -81,6 +83,9 @@
         totalTime: 60,
         canClick: true,//添加canClick
       };
+    },
+    components:{
+      NavBarherder:NavBarherder
     },
     methods: {
       countDown() {
