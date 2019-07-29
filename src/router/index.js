@@ -6,6 +6,8 @@ import PhoneParagraphNo from '@/components/user/PhoneParagraphNo'
 import EmailLogin from '@/components/user/EmailLogin'
 import ResetPassword from '@/components/user/ResetPassword'
 
+import Index from '@/components/main/Index'
+
 Vue.use(Router)
 
 let router = new Router({
@@ -44,6 +46,16 @@ let router = new Router({
       path: '/user/resetpassword',
       name: 'ResetPassword',
       component: ResetPassword
+    },
+
+    {
+      path: '/main',
+      redirect:'/main/index'
+    },
+    {
+      path: '/main/index',
+      name: 'Index',
+      component: Index
     },
   ]
 })

@@ -36,7 +36,7 @@
       </van-row>
       <van-row class="item" type="flex" justify="center">
         <van-col span="20">
-          <van-button type="primary" size="large">登录</van-button>
+          <van-button type="primary" size="large" @click.native.prevent="onLogin">登录</van-button>
         </van-col>
       </van-row>
       <van-row class="item">
@@ -100,6 +100,10 @@
       onResetPassword(){
         let that=this;
         that.$router.push({path:'/user/resetpassword'});
+      },
+      onLogin(){
+        let that=this;
+        that.$router.push({path:'/main/index'});
       }
     }
   }
