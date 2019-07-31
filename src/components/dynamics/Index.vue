@@ -21,21 +21,19 @@
 </template>
 
 <script>
-  import {BASE} from '../../assets/js/common';
-
+  import {commonMethods} from '../../assets/js/common';
   export default {
     name: "index",
     data() {
       return {
         currBarIndex: 0,
-
       };
     },
     created() {
     },
     mounted() {
       let that = this;
-      BASE.touchMovingDirection("dyIndexSwiperDiv", function (direction) {
+      commonMethods.touchMovingDirection("dyIndexSwiperDiv", function (direction) {
         switch (direction) {
           case 'Right'://向右
             document.getElementById("tuijianwarpdiv").style.transform = "translate3d(0,0,0)";
@@ -137,7 +135,6 @@
       right: 0;
       bottom: 0;
       -webkit-overflow-scrolling: touch;
-
     }
     .swiper-div-content {
       position: absolute;

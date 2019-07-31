@@ -1,4 +1,4 @@
-export const BASE={
+export const commonMethods={
   getBrowserInfo:function (){
     var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
     var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
@@ -46,6 +46,10 @@ export const BASE={
       return "Chrome  "+"["+userAgent+"]";
     }
   },
+  /**
+   * 移动端手势事件移动方向
+   * 参数: id 当前移动的元素id,cb 回调函数
+   */
   touchMovingDirection:function (id,cb) {
     let  startx=0,starty=0,direction="";
     document.getElementById(id).addEventListener('touchstart', function (e) {
