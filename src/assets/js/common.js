@@ -45,5 +45,24 @@ export const BASE={
     if (isChrome) {
       return "Chrome  "+"["+userAgent+"]";
     }
+  },
+  touchMovingDirection:function (id,cb) {
+    let  startx=0,starty=0,direction="";
+    document.getElementById(id).addEventListener('touchstart', function (e) {
+      //记录按下的信息
+      startx = e.changedTouches[0].pageX;
+      starty = e.changedTouches[0].pageY;
+    }, false);
+    document.getElementById(id).addEventListener('touchend', function (e) {
+      //通过抬起时的位置信息，计算出滑动方向
+      var endx = e.changedTouches[0].pageX;
+      var endy = e.changedTouches[0].pageY;
+      if ((Math.abs(endx - startx) > 30) || (Math.abs(endy - starty) > 30)) {
+        e.dir = Math.abs(endx - startx) >= Math.abs(endy - starty) ? (endx - startx > 0 ? 'Right' : 'Left') : (endy - starty > 0 ? 'Up' : 'Down');
+        direction=e.dir;
+        cb(direction);
+      }
+    }, false);
+
   }
 }

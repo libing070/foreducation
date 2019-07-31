@@ -21,6 +21,8 @@
 </template>
 
 <script>
+  import {BASE} from '../../assets/js/common';
+
   export default {
     name: "index",
     data() {
@@ -32,46 +34,35 @@
     created() {
     },
     mounted() {
-      let that=this;
-      let  startx=0,starty=0;
-      document.getElementById("dyIndexSwiperDiv").addEventListener('touchstart', function (e) {
-        //记录按下的信息
-        startx = e.changedTouches[0].pageX;
-        starty = e.changedTouches[0].pageY;
-      }, false);
-      document.getElementById("dyIndexSwiperDiv").addEventListener('touchend', function (e) {
-        //通过抬起时的位置信息，计算出滑动方向
-       var endx = e.changedTouches[0].pageX;
-       var endy = e.changedTouches[0].pageY;
-        if ((Math.abs(endx - startx) > 30) || (Math.abs(endy - starty) > 30)) {
-          e.dir = Math.abs(endx - startx) >= Math.abs(endy - starty) ? (endx - startx > 0 ? 'Right' : 'Left') : (endy - starty > 0 ? 'Up' : 'Down');
-          switch(e.dir) {
-            case 'Right'://向右
-              document.getElementById("tuijianwarpdiv").style.transform = "translate3d(0,0,0)";
-              document.getElementById("guanzhuwarpdiv").style.transform = "translate3d(100%,0,0)";
-              that.currBarIndex = 0;
-              break;
-            case 'Left'://向左
-              document.getElementById("tuijianwarpdiv").style.transform = "translate3d(-100%,0,0)";
-              document.getElementById("guanzhuwarpdiv").style.transform = "translate3d(0,0,0)";
-              that.currBarIndex = 1;
-              break;
-            case 'Up':
-              break;
-            case 'Down':
-              break;
-            default:
-          }
-          let classArr = document.getElementsByClassName("dy-indexitem");
-          for (var i = 0; i < classArr.length; i++) {
-            if (i == that.currBarIndex ) {
-              classArr[i].classList.add("active");
-            }else{
-              classArr[i].classList.remove("active");
-            }
+      let that = this;
+      BASE.touchMovingDirection("dyIndexSwiperDiv", function (direction) {
+        switch (direction) {
+          case 'Right'://向右
+            document.getElementById("tuijianwarpdiv").style.transform = "translate3d(0,0,0)";
+            document.getElementById("guanzhuwarpdiv").style.transform = "translate3d(100%,0,0)";
+            that.currBarIndex = 0;
+            break;
+          case 'Left'://向左
+            document.getElementById("tuijianwarpdiv").style.transform = "translate3d(-100%,0,0)";
+            document.getElementById("guanzhuwarpdiv").style.transform = "translate3d(0,0,0)";
+            that.currBarIndex = 1;
+            break;
+          case 'Up':
+            break;
+          case 'Down':
+            break;
+          default:
+        }
+        let classArr = document.getElementsByClassName("dy-indexitem");
+        for (var i = 0; i < classArr.length; i++) {
+          if (i == that.currBarIndex) {
+            classArr[i].classList.add("active");
+          } else {
+            classArr[i].classList.remove("active");
           }
         }
-      }, false);
+      });
+
 
     },
     methods: {
