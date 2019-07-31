@@ -2,21 +2,21 @@
   <div class="tab-barfooter">
     <div class="wrap">
       <div class="box">
-        <div class="item active" @click="onChangeTabBar('0')">
+        <div class="tab-barfooteritem active" @click="onChangeTabBar('0')">
           <div class="iconfont icon-dongtai"></div>
           <div class="text">动态</div>
         </div>
-        <div class="item" @click="onChangeTabBar('1')">
+        <div class="tab-barfooteritem" @click="onChangeTabBar('1')">
           <div class="iconfont icon-message"></div>
           <div class="text">消息</div>
         </div>
-        <div class="item">
+        <div class="tab-barfooteritem">
         </div>
-        <div class="item" @click="onChangeTabBar('3')">
+        <div class="tab-barfooteritem" @click="onChangeTabBar('3')">
           <div class="iconfont icon-faxian"></div>
           <div class="text">发现</div>
         </div>
-        <div class="item" @click="onChangeTabBar('4')">
+        <div class="tab-barfooteritem" @click="onChangeTabBar('4')">
           <div class="iconfont icon-wode"></div>
           <div class="text">我的</div>
         </div>
@@ -40,7 +40,7 @@
     },
     methods: {
       onChangeTabBar(index) {
-        let classArr =  document.getElementsByClassName("item");
+        let classArr =  document.getElementsByClassName("tab-barfooteritem");
         for(var i=0;i<classArr.length;i++){
           if(i==index){
             classArr[i].classList.add("active");
@@ -52,7 +52,7 @@
       },
       onAddDynamics() {
         this.$emit("listenToChildEventTabBarfooter",2);
-        let classArr =  document.getElementsByClassName("item");
+        let classArr =  document.getElementsByClassName("tab-barfooteritem");
         for(var i=0;i<classArr.length;i++){
             classArr[i].classList.remove("active");
         }
@@ -91,25 +91,25 @@
     display: flex;
   }
 
-  .item {
+  .tab-barfooteritem {
     -webkit-flex: 1;
     flex: 1;
     text-align: center;
     height: 0.9rem;
   }
 
-  .item.active {
+  .tab-barfooteritem.active {
     color: #07c160;
   }
 
-  .item .iconfont {
+  .tab-barfooteritem .iconfont {
     height: 50%;
     width: 100%;
     line-height: 0.5rem;
     font-size: 0.3rem;
   }
 
-  .item .text {
+  .tab-barfooteritem .text {
     height: 50%;
     width: 100%;
     font-size: 0.2rem;
