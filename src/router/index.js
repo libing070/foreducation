@@ -7,6 +7,7 @@ import EmailLogin from '@/components/user/EmailLogin'
 import ResetPassword from '@/components/user/ResetPassword'
 
 import Index from '@/components/main/Index'
+import Test from '@/components/common/Test'
 
 Vue.use(Router)
 
@@ -14,6 +15,11 @@ let router = new Router({
   mode:'history'||'hash',//hash 打包需要使用hash 无#： history //去掉路径地址的#字符以真实的连接访问  如果设置为hash  路径就是默认的加#
 
   routes: [
+    {
+      path: '/test/',
+      name: 'Test',
+      component: Test
+    },
     {
       path: '/',
       redirect:'/user/login'  //直接访问ip+端口跳转到登陆页面

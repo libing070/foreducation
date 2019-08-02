@@ -68,7 +68,7 @@
     left: 0;
     width: 100%;
     height: 0.9rem;
-    background-color: #f3f3f3;
+    background-color: #ffffff;
     .add-btn {
       position: absolute;
       bottom: 0;
