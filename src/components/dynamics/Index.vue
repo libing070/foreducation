@@ -141,28 +141,29 @@
       },
 
       formatHtml() {
-        let classArr = document.getElementsByClassName("dy-message-list-content");
-        for (var i = 0; i < classArr.length; i++) {
-          classArr[i].setAttribute("id", "dymessagecontent" + i);
-          var box = document.getElementById("dymessagecontent" + i);
-          //    box.innerHTML = that.content[i];
-          var scrollHeight = box.scrollHeight;
-          var offsetHeight = box.offsetHeight;
-          if (scrollHeight > offsetHeight) {
-            // console.log("溢出");
-            box.style.overflowY = 'hidden';
-            var sibs = classArr[i].parentNode.childNodes;
-            for (var n = 0; n < sibs.length; n++) {
-              if (sibs[n] != box) {
-                sibs[n].innerHTML = '...查看更多';
-                sibs[n].className += " openSibs_" + i + " full";
-              }
-            }
-          } else {
-            // console.log("没有溢出");
-          }
-
-        }
+           setTimeout(function () {
+            let classArr=  document.getElementsByClassName("dy-message-list-content")
+             for (var i = 0; i < classArr.length; i++) {
+               classArr[i].setAttribute("id", "dymessagecontent" + i);
+               var box = document.getElementById("dymessagecontent" + i);
+               //    box.innerHTML = that.content[i];
+               var scrollHeight = box.scrollHeight;
+               var offsetHeight = box.offsetHeight;
+               if (scrollHeight > offsetHeight) {
+                 // console.log("溢出");
+                 box.style.overflowY = 'hidden';
+                 var sibs = classArr[i].parentNode.childNodes;
+                 for (var n = 0; n < sibs.length; n++) {
+                   if (sibs[n] != box) {
+                     sibs[n].innerHTML = '...查看更多';
+                     sibs[n].className += " openSibs_" + i + " full";
+                   }
+                 }
+               } else {
+                 // console.log("没有溢出");
+               }
+             }
+           },1);
       },
       cmtexpandloadMore(event) {
         var el = event.currentTarget;
@@ -345,6 +346,7 @@
         max-height: 125px;
         font-size: 12px;
         line-height: 1.5;
+        overflow-y: hidden;
       }
       .cmt-expand {
         position: absolute;
