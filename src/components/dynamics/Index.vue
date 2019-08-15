@@ -170,13 +170,14 @@
         console.log(obj_class_lst);
         var openSibs_index = obj_class_lst[1].split("_")[1];
         if (el.getAttribute("class").indexOf("full") > -1) {
-          el.innerHTML = '收起';
+         // el.innerHTML = '收起';
+          el.innerHTML = '';
           el.classList.remove("full");
           document.getElementById("dymessagecontent" + openSibs_index).style.maxHeight = '1000px';
         } else {
-          el.classList.add("full");
-          el.innerHTML = '...查看更多';
-          document.getElementById("dymessagecontent" + openSibs_index).style.maxHeight = '125px';
+          // el.classList.add("full");
+          // el.innerHTML = '...查看更多';
+          // document.getElementById("dymessagecontent" + openSibs_index).style.maxHeight = '125px';
 
         }
       },
