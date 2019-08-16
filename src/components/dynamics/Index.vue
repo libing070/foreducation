@@ -8,7 +8,7 @@
       </van-col>
     </van-row>
     <div class="swiper-div" id="dyIndexSwiperDiv">
-      <div class="swiper-div-content tuijian-warp-div" id="tuijianwarpdiv">
+      <div class="swiper-div-content tuijian-warp-div" id="tuijianwarpdiv" v-scroll="scroll">
         <div class="dy-tab-list" :id="'dytablist'+index" v-for="(list ,index) in dynamicsList" :key="index">
           <div class="title">
             <div class="head"><img src="./../../assets/images/touxiang.png"></div>
@@ -27,7 +27,8 @@
           <span v-if="list.dyImagesTwoArr.length>0">
               <span v-for="(item ,n) in list.dyImagesTwoArr" :key="n">
                   <div class="image-list">
-                    <div :class="'item dytablist'+list.id+'-images'" @click="onPreviewPicture($event)" v-for="(it ,i) in item"><img :src="require('./../../assets/images/1/'+it+'.jpg')"></div>
+                    <div :class="'item dytablist'+list.id+'-images'" @click="onPreviewPicture($event)"
+                         v-for="(it ,i) in item"><img :src="require('./../../assets/images/1/'+it+'.jpg')"></div>
                   </div>
               </span>
             <van-image-preview
@@ -39,7 +40,7 @@
           </span>
           <div class="bottom">
             <div class="agree">
-              <van-icon class="icon" name="like-o"></van-icon>
+              <van-icon @click="agreeClick(index,$event)" class="icon iconfont icon-zan" name="zan"></van-icon>
               <span>{{list.agreeCount}}</span></div>
             <div class="reply">
               <van-icon class="icon" name="chat-o"/>
@@ -58,7 +59,8 @@
 <script>
   import {commonMethods} from '../../assets/js/common';
   import API from '../../api/api_dynamics';
-  import { ImagePreview } from 'vant';
+  import {ImagePreview} from 'vant';
+
   export default {
     name: "index",
     data() {
@@ -67,7 +69,7 @@
         dynamicsList: [],
         show: false,
         index: 0,
-        images: []
+        images: [],
       };
     },
     components: {},
@@ -141,29 +143,29 @@
       },
 
       formatHtml() {
-           setTimeout(function () {
-            let classArr=  document.getElementsByClassName("dy-message-list-content")
-             for (var i = 0; i < classArr.length; i++) {
-               classArr[i].setAttribute("id", "dymessagecontent" + i);
-               var box = document.getElementById("dymessagecontent" + i);
-               //    box.innerHTML = that.content[i];
-               var scrollHeight = box.scrollHeight;
-               var offsetHeight = box.offsetHeight;
-               if (scrollHeight > offsetHeight) {
-                 // console.log("溢出");
-                 box.style.overflowY = 'hidden';
-                 var sibs = classArr[i].parentNode.childNodes;
-                 for (var n = 0; n < sibs.length; n++) {
-                   if (sibs[n] != box) {
-                     sibs[n].innerHTML = '...查看更多';
-                     sibs[n].className += " openSibs_" + i + " full";
-                   }
-                 }
-               } else {
-                 // console.log("没有溢出");
-               }
-             }
-           },1);
+        setTimeout(function () {
+          let classArr = document.getElementsByClassName("dy-message-list-content");
+          for (var i = 0; i < classArr.length; i++) {
+            classArr[i].setAttribute("id", "dymessagecontent" + i);
+            var box = document.getElementById("dymessagecontent" + i);
+            //    box.innerHTML = that.content[i];
+            var scrollHeight = box.scrollHeight;
+            var offsetHeight = box.offsetHeight;
+            if (scrollHeight > offsetHeight) {
+              // console.log("溢出");
+              box.style.overflowY = 'hidden';
+              var sibs = classArr[i].parentNode.childNodes;
+              for (var n = 0; n < sibs.length; n++) {
+                if (sibs[n] != box) {
+                  sibs[n].innerHTML = '...查看更多';
+                  sibs[n].className += " openSibs_" + i + " full";
+                }
+              }
+            } else {
+              // console.log("没有溢出");
+            }
+          }
+        }, 1);
       },
       cmtexpandloadMore(event) {
         var el = event.currentTarget;
@@ -171,7 +173,7 @@
         console.log(obj_class_lst);
         var openSibs_index = obj_class_lst[1].split("_")[1];
         if (el.getAttribute("class").indexOf("full") > -1) {
-         // el.innerHTML = '收起';
+          // el.innerHTML = '收起';
           el.innerHTML = '';
           el.classList.remove("full");
           document.getElementById("dymessagecontent" + openSibs_index).style.maxHeight = '1000px';
@@ -188,16 +190,16 @@
       onPreviewPicture(event) {
         var el = event.currentTarget;
         var obj_class_lst = el.className.split(/\s+/);
-        var cla=obj_class_lst[1];
+        var cla = obj_class_lst[1];
         let classArr = document.getElementsByClassName(cla);
-        var arr=[];
-        var currIndex=0;
-         for(var i=0;i<classArr.length;i++){
-           arr.push(classArr[i].childNodes[0].src);
-           if(classArr[i]==el){
-             currIndex=i;
-           }
-         }
+        var arr = [];
+        var currIndex = 0;
+        for (var i = 0; i < classArr.length; i++) {
+          arr.push(classArr[i].childNodes[0].src);
+          if (classArr[i] == el) {
+            currIndex = i;
+          }
+        }
         ImagePreview({
           images: arr,
           startPosition: currIndex,
@@ -223,6 +225,29 @@
             classArr[i].classList.remove("active");
           }
         }
+      },
+
+      agreeClick(index, e) {
+        if (e.currentTarget.className.indexOf('active') > -1) {
+          e.currentTarget.classList.remove("active");
+          var sibs = e.currentTarget.parentNode.childNodes;
+          for (var n = 0; n < sibs.length; n++) {
+            if (sibs[n] != e.currentTarget) {
+              sibs[n].innerHTML--;
+            }
+          }
+        } else {
+          e.currentTarget.classList.add("active");
+          var sibs = e.currentTarget.parentNode.childNodes;
+          for (var n = 0; n < sibs.length; n++) {
+            if (sibs[n] != e.currentTarget) {
+              sibs[n].innerHTML++;
+            }
+          }
+        }
+      },
+      scroll () {
+        console.log(1111111);
       },
     }
   }
@@ -375,6 +400,9 @@
           padding-right: 0.1rem;
           font-size: 0.35rem;
           vertical-align: middle;
+        }
+        .active {
+          color: red;
         }
         span {
           vertical-align: middle;
