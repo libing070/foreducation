@@ -27,7 +27,7 @@
           <span v-if="list.dyImagesTwoArr.length>0">
               <span v-for="(item ,n) in list.dyImagesTwoArr" :key="n">
                   <div class="image-list">
-                    <div :class="'item dytablist'+list.id+'-images'" @click="onPreviewPicture($event)" v-for="(it ,i) in item"><img :src="it"></div>
+                    <div :class="'item dytablist'+list.id+'-images'" @click="onPreviewPicture($event)" v-for="(it ,i) in item"><img :src="require('./../../assets/images/1/'+it+'.jpg')"></div>
                   </div>
               </span>
             <van-image-preview
